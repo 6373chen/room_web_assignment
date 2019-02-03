@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  {% include 'includes/head.twig' %}
+  <body>
+    
+    {% include 'includes/navigation.twig' %}
+    
+    <div class="container-fluid">
+      <div class="row">
+        <form method="post" action="signin.php" id="sign-up" class="col-md-4 offset-md-4" novalidate>
+          <h3 class="text-center my-4">Sign in to your account</h3>
+          <div class="form-group">
+            <label for="username">Username or Email</label>
+            
+            {% if response.user %}
+              {% set username = response.user %}
+            {% endif %}
+            
+            <input type="text" name="user" class="form-control" id="username" placeholder="username or email" required value="{{username}}">
+          </div>
+          
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" class="form-control" id="password" placeholder="your password" required>
+          </div>
+          
+          {% if response.error %}
+            <div class="feeback text-danger">
+              {{response.error}}
+            </div>
+          {% endif %}
+          
+          <div class="my-2 text-center">
+            <button class="btn btn-primary" type="submit">Sign In</button>
+          </div>
+          <p class="text-center">Don't have an account? <a href="signup.php">Sign up</a></p>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

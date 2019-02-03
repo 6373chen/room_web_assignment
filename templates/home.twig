@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+  {% include 'includes/head.twig' %}
+  <body>
+    
+    {% include 'includes/navigation.twig' %}
+    <div class = "d-flex justify-content-center alert alert-primary " role="alert">
+      <button class="btn btn-outline-dark alert alert-light my-2 my-sm-0 my-3 mx-md-5 " type="submit">Find a place</button>
+      <button class="btn btn-outline-dark alert alert-light my-2 my-sm-0 my-3 mx-md-5 " type="submit">Post a place</button>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-2">
+          {#for categories#}
+          {% include 'includes/categories.twig'  %}
+        </div>
+        <div class="col-lg-10">
+          <div class="row my-3">
+            {% if products.total %}
+              <div class="col">
+                A total of {{products.total}} products
+              </div>
+            {% endif %}
+            {% if paginators %}
+              <div class="col">
+                {% include 'includes/pagination.twig' %}
+              </div>
+            {% endif %}
+            {% if products.totalpages and products.page %}
+              <div class="col text-right">
+                Page {{products.page}} of {{products.totalpages}}</div>
+            {% endif %}
+          </div>
+          {#for products#}
+          <div class="row">
+            {% for product in products.items %}
+              <div class="col-lg-4 col-sm-6 mb-4">
+                <a href="detail.php?id={{product.product_id}}" class="product-card">
+                  <h3 class="product-name">{{ product.name }}</h3>
+                  <img class="img-fluid border border-secondary rounded" src="images/products/products/{{product.image_file_name}}">
+                  <h5 class="price product-price">{{ product.price}} per week</h5>
+                </a>
+              </div>
+            {% endfor %}
+          </div>
+          
+          <div class="row my-3">
+            {% if products.total %}
+              <div class="col">
+                A total of {{products.total}} products
+              </div>
+            {% endif %}
+            {% if paginators %}
+              <div class="col">
+                {% include 'includes/pagination.twig' %}
+              </div>
+            {% endif %}
+            {% if products.totalpages and products.page %}
+              <div class="col text-right">
+                Page {{products.page}} of {{products.totalpages}}</div>
+            {% endif %}
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </body>
+</html>

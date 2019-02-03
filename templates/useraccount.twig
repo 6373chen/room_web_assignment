@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  {% include 'includes/head.twig' %}
+  <body>
+    
+    {% include 'includes/navigation.twig' %}
+    
+    <div class="container">
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <form action="useraccount.php" method="post" id="useraccount">
+            <h4>Update your account</h4>
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" id="username" name="username" class="form-control" maxlength="16" value={{account.username}}>
+              <div class="invalid-feedback">Minimum 6 characters</div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" class="form-control" value="{{account.email}}">
+              <div class="invalid-feedback">Please enter a valid email address</div>
+            </div>
+            <div class="form-group">
+              <label for="password1">New Password</label>
+              <input type="password" id="password1" name="password1" class="form-control" autocomplete="new-password" placeholder="minimum 8 characters, must not contain a symbol">
+              <div class="invalid-feedback">minimum 8 characters and no symbol</div>
+            </div>
+            <div class="form-group">
+              <label for="password2">Repeat Password</label>
+              <input type="password" id="password2" name="password2" class="form-control" autocomplete="new-password" placeholder="retype your new password">
+              <div class="invalid-feedback">passwords do not match</div>
+            </div>
+            <div class="row">
+              <div class="col d-flex flex-row">
+                <button class="btn btn-primary">Cancel</button>
+                <button class="btn btn-primary ml-2" disabled>Update Account</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="js/modules/validator.module.js" type="module"></script>
+    <script src="js/userAccountPage.js" type="module"></script>
+  </body>
+</html>

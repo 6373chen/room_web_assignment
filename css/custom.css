@@ -1,0 +1,15 @@
+.price::before{
+    content: '$';
+    margin-right:0.2em;
+}
+.product-name{
+    min-height: 5rem;
+}
+.product-card{
+    text-decoration: none;
+    color: inherit;
+}
+.product-card:hover{
+    text-decoration: none;
+    color: inherit;
+}

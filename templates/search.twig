@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  {% include 'includes/head.twig' %}
+  <body>
+    
+    {% include 'includes/navigation.twig' %}
+    
+    <div class="container mt-4">
+      {% if search | length > 0 %}
+        {% for item in search %}
+          <div class="row">
+            <div class="col-md-4">
+              <img src="images/products/products/{{item.image_file_name}}" class="img-fluid">
+            </div>
+            <div class="col-md-8">
+              <h5 class="text-capitalize">{{ item.name }}</h5>
+              <p>{{ item.description }}</p>
+              <a href="detail.php?id={{item.product_id}}">Detail</a>
+            </div>
+          </div>
+          <hr>
+        {% endfor %}
+      {% else %}
+        <h2 class="text-center">No result found</h2>
+      {% endif %}
+    </div>
+  </body>
+</html>

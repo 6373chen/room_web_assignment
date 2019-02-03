@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  {% include 'includes/head.twig' %}
+  <body>
+    
+    {% include 'includes/navigation.twig' %}
+    
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h1 class="text-capitalize">{{product.name}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          {% set count = product.images | length %}
+          {% if count == 1 and count > 0 %}
+            {% for image in product.images %}
+              <img class="img-fluid" src="images/products/products/{{image}}">
+            {% endfor %}
+          {% elseif count > 1 and count > 0 %}
+            <div id="detail-carousel" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                {% for image in product.images %}
+                  <div class="carousel-item {{(loop.index==1) ? 'active' : ''}}">
+                    <img class="d-block w-100 img-fluid" src="images/products/products/{{image}}">
+                  </div>
+                {% endfor %}
+              </div>
+              <div class="carousel-thumbnails mt-2">
+                {% for image in product.images %}
+                <a href="#" data-target="#detail-carousel" data-slide-to="{{loop.index0}}" class="{{(loop.index==1) ? 'active' : ''}}">
+                  <img class="img-fluid border border-secondary" style="max-width:60px;" src="images/products/products/{{image}}">
+                </a>
+                {% endfor %}
+              </div>
+            </div>
+          {% endif %}
+        </div>
+        <div class="container-fluid">
+          <p>{{ product.description }}</p>
+          <h4 class="price" id="product-price">{{ product.price }}</h4>
+          
+          <form id="detail-form" method="get">
+            <input type="hidden" name="productid" value="{{product.product_id}}">
+            <div class="form-row flex-wrap">
+              
+              
+              
+              <button class="col-6 col-md-6 btn btn-primary my-2 order-2 order-md-3" value="wishlist">
+                
+                Contact 
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="js/detailPage.js"></script>
+  </body>
+</html>
