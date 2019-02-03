@@ -37,10 +37,14 @@
             </div>
           {% endif %}
         </div>
-        <div class="container-fluid">
+        <div class="shadow p-3 mb-5 bg-white rounded container-fluid">
           <p>{{ product.description }}</p>
           <h4 class="price" id="product-price">{{ product.price }}</h4>
-          
+          <p>bathroom : {{product.bathroom}} </p> 
+          <p>bedroom : {{product.bedroom}} </p>
+          <p>parking : {{product.parking}}</p>
+          <p>bond : {{product.bond}} week(s)</p>
+          <p>date available : {{product.date_availaible}} </p>
           <form id="detail-form" method="get">
             <input type="hidden" name="productid" value="{{product.product_id}}">
             <div class="form-row flex-wrap">
@@ -48,7 +52,6 @@
               
               
               <button class="col-6 col-md-6 btn btn-primary my-2 order-2 order-md-3" value="wishlist">
-                
                 Contact 
               </button>
             </div>
