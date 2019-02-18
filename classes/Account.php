@@ -30,7 +30,7 @@ class Account extends Database{
       //signup not successful
       $response['success'] = false;
       $response['errors'] = $errors;
-      return $response;
+     
     }
     else{
       //no errors
@@ -45,7 +45,7 @@ class Account extends Database{
       if( $statement -> execute() ){
         //executed successfully
          
-        $account_id = $this -> connection -> insert_id;
+        $account_id = $this -> connection -> insert_id;// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         $response['email'] = $email;
         $response['username'] = $username;
         $response['account_id'] = $account_id;
@@ -66,8 +66,9 @@ class Account extends Database{
           $response['errors']['email'] = 'email already exists';
         }
       }
-      return $response;
+      
     }
+    return $response;
   }
   
   public function signIn($user,$password){

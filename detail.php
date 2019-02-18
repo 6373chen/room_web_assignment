@@ -15,7 +15,7 @@ $product = $detail_class -> getProductById();
 $page_title = ucwords($product['name']);
 
 $loader = new Twig_Loader_Filesystem('templates');
-$twig = new Twig_Environment($loader, array(
+$twig = new Twig_Environment($loader, array( 
     //'cache' => 'cache'
 ));
 

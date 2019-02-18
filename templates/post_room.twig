@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+  {% include 'includes/head.twig' %}
+  <body>
+    
+    {% include 'includes/navigation.twig' %}
+    
+    <div class="container-fluid">
+      <div class="row">
+        <form method="post" action="post_room.php" enctype="multipart/form-data" id="sign-up" class="col-md-4 offset-md-4" >
+          <h3 class="text-center my-4">post room</h3>
+           <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" name="title" class="form-control" id="title" placeholder="" required>
+            <div class="invalid-feedback">
+              Please enter a title
+            </div>
+          </div>  
+          <div class="form-group">
+            <label for="description">description</label>
+            <textarea  rows="5" type="text" name="description" class="form-control" id="description" ></textarea>
+            <div class="invalid-feedback">
+              Please enter description
+            </div>
+           
+          </div>
+           <div class="form-group">
+           <label for="price">Price</label>
+            <input type="number" step="0.01" name="price" class="form-control" id="price"  required>
+            <div class="invalid-feedback">
+              Please enter price
+            </div>
+           </div>
+          
+          <div class="form-group">
+            <label for="bathroom">Bathroom</label>
+            <input type="number" min="0" max="10" step="1" value="1"name="bathroom" class="form-control" id="bathroom">
+          </div>
+          <div class="form-group">
+            <label for="parking">Parking</label>
+            <input type="number" min="0" max="10" step="1" value="1" name="parking" class="form-control" id="parking">
+            
+          </div>  
+          <div class="form-group">
+            <label for="bond">Bond</label>
+            <input type="number" min="0" max="4" step="1" value="1" name="bond" class="form-control" id="bond">
+          </div>  
+          <div class="form-group">
+            <label for="bedroom">bedroom</label>
+            <input type="number" min="0" max="10" step="1" value="1" name="bedroom" class="form-control" id="bedroom"  >
+          </div>
+           <div class="form-group">
+            <label for="date_availble">Date availible</label>
+            <input type="date"  name="date" class="form-control" id="date"  >
+          </div>  
+          <div class="form-group">
+            <select name="categories">
+              {% for category in categories.items %}
+                <option value = {{category.category_id}}>{{ category.name }}</option>
+                
+              {% endfor %}
+                
+             </select>
+
+          </div>
+          <div class="form-group">
+            <label for="date_availble">Image</label>
+            <input type="file"  name="image" class="form-control" id="image" required>
+            <div class="invalid-feedback">
+              Please enter price
+            </div>
+          </div>  
+          <div class="my-2 text-center">
+            <input class="btn btn-primary" type="submit"></input>
+          </div>
+          
+        </form>
+      </div>
+    </div>
+    <script src="js/modules/validator.module.js" type="module"></script>
+    <script src="js/signUp.js" type="module"></script>
+  </body>
+</html>

@@ -8,6 +8,65 @@ class ProductDetail extends Product{
     parent::__construct();
     $this -> product_id = $_GET['id'];
   }
+  public function  uploadProduct($title,$description,$price,$bathroom,$bedroom,$bond,$date_avail,$parking){
+      $query = 'INSERT INTO product (
+                 
+                  name ,
+                  description,
+                  price,
+                  bathroom,
+                  active ,
+                  created ,
+                  
+                  bedroom ,
+                  parking ,
+                  bond ,
+                  date_availaible
+                  )
+                  VALUES (
+                  ?,  ?,  ?, ? ,  1, NOW() , ? , ? , ?,?)';
+                
+      $statement = $this -> connection -> prepare($query);
+      $statement -> bind_param( 'ssiiiiis' , $title,$description,$price,$bathroom,$bedroom,$parking ,$bond,$date_avail);
+      if($statement -> execute()){
+       // echo "<script>alert('yea bro, succeed')</script>";
+      }else{
+        echo "<script>alert('Oh no something wrong')</script>";
+      }
+    return $this -> connection -> insert_id;
+    
+  }
+  public function uploadImage($imageName){
+    $query = "INSERT INTO image(image_file_name,date_added)
+              VALUES(?,NOW())";
+    $statement = $this -> connection -> prepare($query);
+    $statement -> bind_param('s',$imageName);
+    $statement -> execute();
+    return $this -> connection -> insert_id;
+  }
+  public function uploadProduct_image($product_id, $image_id){
+    
+     $query = "INSERT INTO product_image(product_id,image_id)
+              VALUES(?,?)";
+    $statement = $this -> connection -> prepare($query);
+    $statement -> bind_param('ii',$product_id,$image_id);
+    $statement -> execute();
+    return $this -> connection -> insert_id;
+  }
+  
+  public function uploadProduct_category($product_id,$category_id)
+  {
+    $query = "INSERT INTO product_category(product_id,category_id)
+              VALUES(?,?)";
+    $statement = $this -> connection -> prepare($query);
+    $statement -> bind_param('ii',$product_id,$category_id);
+    if($statement -> execute()){
+      return $this -> connection -> insert_id;
+    }
+     else{
+       echo "<script>alert('Oh no something wrong categories')</script>";
+     }
+  }
   public function getProductById(){
     if( isset($this -> product_id) == false ){
       exit();
@@ -21,6 +80,7 @@ class ProductDetail extends Product{
       product.bedroom,
       product.bathroom,
       product.bond,
+      product.parking,
       product.date_availaible,
       image.image_file_name
       FROM product

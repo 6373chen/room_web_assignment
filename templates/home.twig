@@ -4,10 +4,15 @@
   <body>
     
     {% include 'includes/navigation.twig' %}
+    {% if user %}
+      
+    
     <div class = "d-flex justify-content-center alert alert-primary " role="alert">
-      <button class="btn btn-outline-dark alert alert-light my-2 my-sm-0 my-3 mx-md-5 " type="submit">Find a place</button>
-      <button class="btn btn-outline-dark alert alert-light my-2 my-sm-0 my-3 mx-md-5 " type="submit">Post a place</button>
+    
+    <a  href ="post_room.php"><button class="btn btn-outline-dark alert alert-light my-2 my-sm-0 my-3 mx-md-5 " type="submit" >Post a place</button></a> 
+    <a  href ="post_room.php"><button class="btn btn-outline-dark alert alert-light my-2 my-sm-0 my-3 mx-md-5 " type="submit">Wish list</button></a>
     </div>
+    {% endif %}
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-2">
@@ -37,7 +42,7 @@
               <div class="col-lg-4 col-sm-6 mb-4">
                 <a href="detail.php?id={{product.product_id}}" class="product-card">
                   <h3 class="product-name">{{ product.name }}</h3>
-                  <img class="img-fluid border border-secondary rounded" src="images/products/products/{{product.image_file_name}}">
+                  <img class="img-fluid border border-secondary rounded" style='width:400px; height:250px' src="images/products/products/{{product.image_file_name}}">
                   <h5 class="price product-price">{{ product.price}} per week</h5>
                 </a>
               </div>

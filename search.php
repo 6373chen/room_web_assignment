@@ -2,7 +2,7 @@
 session_start();
 
 include('vendor/autoload.php');
-
+include('includes/navigation.inc.php');
 use aitsyd\ProductSearch;
 
 //search keyword

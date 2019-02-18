@@ -59,8 +59,8 @@ class Product extends Database{
       @image_id := ( SELECT image_id FROM product_image WHERE product_id = @pid LIMIT 1 ) AS image_id,
       ( SELECT image_file_name FROM image WHERE image_id = @image_id ) AS image_file_name
       FROM product 
-      WHERE active=1";
-      
+      WHERE active=1 order by created DESC";
+     
       //get the total number of products, before query has limit and offset applied
       $this -> products['total'] = $this -> getProductTotal( $query );
       
@@ -85,6 +85,7 @@ class Product extends Database{
         }
         $this -> products['items'] = $products_result;
       }
+      //echo products;
       return $this -> products;
     }
   }
@@ -99,10 +100,10 @@ class Product extends Database{
     @image_id := ( SELECT image_id FROM product_image WHERE product_id = @pid LIMIT 1 ) AS image_id,
 	  product_category.category_id AS category_id,
     ( SELECT image_file_name FROM image WHERE image_id = @image_id ) AS image_file_name
-    FROM product
+    FROM product 
 	  INNER JOIN product_category
 	  ON product_category.product_id = product.product_id
-    WHERE product_category.category_id = ? AND product.active=1";
+    WHERE product_category.category_id = ? AND product.active=1 order by product.created DESC";
     
     //run the total query before limit and offset are applied
     $this -> products['total'] = $this -> getProductTotal( $query );

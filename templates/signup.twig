@@ -17,9 +17,9 @@
             </div>
             {% if response.errors.username %}
               <div class="feedback text-danger">
-                {% for err in response.errors.username %}
-                  {{err}}
-                {% endfor %}
+                
+                  {{response.errors.username}}
+               
               </div>
             {% endif %}
           </div>
@@ -31,9 +31,9 @@
             </div>
             {% if response.errors.email %}
               <div class="feedback text-danger">
-                {% for err in response.errors.email %}
-                  {{err}}
-                {% endfor %}
+                
+                  {{response.errors.email}}
+              
               </div>
             {% endif %}
           </div>
@@ -45,9 +45,9 @@
             </div>
             {% if response.errors.password %}
               <div class="feedback text-danger">
-                {% for err in response.errors.password %}
-                  {{err}}
-                {% endfor %}
+                
+                  {{response.errors.password}}
+                
               </div>
             {% endif %}
           </div>
